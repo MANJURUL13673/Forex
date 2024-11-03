@@ -25,7 +25,7 @@ namespace winrt::Forex::implementation
     {
         InitializeComponent();
 
-        isPasswordValid = FALSE;
+        isPasswordValid = FALSE; 
     }
 
     int32_t MainWindow::MyProperty()
