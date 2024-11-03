@@ -10,7 +10,10 @@
 #include <fstream>
 #include <Windows.h>
 #include <regex>
-
+#include "mysql_connection.h"
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/prepared_statement.h>
 #endif
 
 using namespace winrt;
@@ -24,7 +27,15 @@ namespace winrt::Forex::implementation
     MainWindow::MainWindow()
     {
         InitializeComponent();
+        sql::Driver* driver;
+        sql::Connection* conn;
+        try {
+            driver = get_driver_instance();
+        }
+        catch (sql::SQLException e)
+        {
 
+        }
         isPasswordValid = FALSE; 
     }
 
