@@ -30,7 +30,7 @@ namespace winrt::Forex::implementation
         sql::Driver* driver;
         sql::Connection* conn;
         try {
-            driver = get_driver_instance();
+            driver =  get_driver_instance();
         }
         catch (sql::SQLException e)
         {
