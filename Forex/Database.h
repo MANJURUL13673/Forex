@@ -11,8 +11,10 @@ class CDatabase
 private:
 	sql::Driver* driver;
 	sql::Connection* conn;
+	sql::Statement* stml;
 
 public:
 	CDatabase(const std::string& server, const std::string& user, const std::string& password);
+	BOOL createDB(const std::string& dbName);
 };
 
