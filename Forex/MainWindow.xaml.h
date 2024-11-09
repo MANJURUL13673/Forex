@@ -4,6 +4,7 @@
 #pragma once
 
 #include "MainWindow.g.h"
+#include "Logger.h"
 #include <iostream>
 
 namespace winrt::Forex::implementation
@@ -12,6 +13,7 @@ namespace winrt::Forex::implementation
     {
     private:
         BOOL isPasswordValid;
+  
         BOOL isValidMobileNumber(std::string mobileNumber);
         BOOL isValidGmail(std::string gmailAddress);
 

@@ -10,6 +10,7 @@
 #include <fstream>
 #include <Windows.h>
 #include <regex>
+#include "ForexGlobal.h"
 
 #endif
 
@@ -24,6 +25,15 @@ namespace winrt::Forex::implementation
     MainWindow::MainWindow()
     {
         InitializeComponent();
+        if (pFGlobal.lgr == nullptr)
+        {
+            pFGlobal.lgr = std::make_unique<CLogger>("E:/LOG/log");
+        }
+        
+        if (pFGlobal.db == nullptr)
+        {
+            pFGlobal.db = std::make_unique<CDatabase>("localhost", "admin", "root");
+        }
 
         isPasswordValid = FALSE; 
     }
