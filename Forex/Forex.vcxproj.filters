@@ -16,12 +16,14 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="ForexGlobal.cpp" />
+    <ClCompile Include="OTPHandle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="ForexGlobal.h" />
+    <ClInclude Include="OTPHandle.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">

@@ -48,6 +48,5 @@ void App::OnLaunched(LaunchActivatedEventArgs const&)
 
     HWND window;
     window = GetActiveWindow();
-    SetWindowPos(window, nullptr, 0, 0, 500, 600, SWP_NOMOVE | SWP_NOZORDER);
-
+    SetWindowPos(window, nullptr, 0, 0, 500, 660, SWP_NOMOVE | SWP_NOZORDER);
 }

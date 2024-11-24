@@ -49,8 +49,12 @@
                 </Path>
                 <StackPanel>
                     <Grid>
-                        <TextBlock Text="Password 1" Margin="18 30 0 0" FontSize="18"/>
-                        <PasswordBox x:Name="Password1Box" Width="220" Height="35" FontSize ="16" BorderBrush ="Black" Margin="130 28 0 0"/>
+                        <TextBlock Text="Email" Margin="18 30 0 0" FontSize="18"/>
+                        <TextBox x:Name="EmailBox" Width="220" Height="35" FontSize ="16" BorderBrush ="Black" Margin="130 28 0 0"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Password 1" Margin="18 20 0 0" FontSize="18"/>
+                        <PasswordBox x:Name="Password1Box" Width="220" Height="35" FontSize ="16" BorderBrush ="Black" Margin="130 18 0 0"/>
                     </Grid>
                     <Grid>
                         <TextBlock Text="Password 2" Margin="18 20 0 0" FontSize="18"/>
@@ -72,10 +76,10 @@
                         <Button Content="Password Validation" Width="125" Height="70" Foreground="Black" BorderBrush="LimeGreen" BorderThickness="3" CornerRadius="62" FontSize="10" Background="White" Margin="140 5 0 0" Click="OnBtnPasswordValidation"/>
                         <TextBlock Text="←" Foreground="LimeGreen" FontSize="50" Margin="180 0 0 33"/>
                         <TextBlock Text="→" Foreground="LimeGreen" FontSize="50" Margin="180 28 0 0"/>
-                        <Button BorderBrush="Transparent" Background="Transparent" Margin="260 40 0 0" Click="OnBtnResetKeyOne">
+                        <Button BorderBrush="Transparent" Background="Transparent" Margin="260 40 0 0" Click="OnBtnNewSignUp">
                             <StackPanel>
-                                <TextBlock Text="Admin Access Reset" FontSize="10" FontWeight="Bold"/>
-                                <Line Stroke="Black" X1="0" X2="95" Y1="0" Y2="0" StrokeThickness="2"/>
+                                <TextBlock Text="Admin Access SignUp" FontSize="10" FontWeight="Bold"/>
+                                <Line Stroke="Black" X1="0" X2="105" Y1="0" Y2="0" StrokeThickness="2"/>
                             </StackPanel>
                         </Button>
                     </Grid>
@@ -252,12 +256,12 @@
                         <TextBox x:Name="MobileBox" Width="220" Height="35" FontSize ="16" BorderBrush ="Black" Margin="130 28 0 0"/>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Google Account" Margin="18 20 0 0" FontSize="18" VerticalAlignment="Top"/>
+                        <TextBlock Text="Mail Account" Margin="18 20 0 0" FontSize="18" VerticalAlignment="Top"/>
                         <TextBox x:Name ="GmailBox" Width="220" Height="35" FontSize ="16" BorderBrush ="Black" VerticalAlignment="Top" Margin="130 18 0 0"/>
                         <TextBlock x:Name="WrongMGWarning" Text="" Margin="270 60 0 0" FontSize="12" Foreground="Red" VerticalAlignment="Top"/>
                     </Grid>
 
-                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 90 0 0">
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 130 0 0">
                         <!--<TextBlock x:Name="WrongOTPWarning" Text="" Margin="270 5 0 0" FontSize="12" Foreground="Red"/>-->
                         <!--Validate &amp; Connect -->
                         <Button Content="Validate &amp; Setup" Width="125" Height="70" Foreground="Black" BorderBrush="LimeGreen" BorderThickness="3" CornerRadius="62" FontSize="10" Background="White" Margin="140 5 0 0" Click="OnBtnValidateAndSetup1"/>

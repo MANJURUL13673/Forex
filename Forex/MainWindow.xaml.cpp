@@ -35,6 +35,23 @@ namespace winrt::Forex::implementation
             pFGlobal.db = std::make_unique<CDatabase>("localhost", "admin", "root");
         }
 
+        std::string tableName = "UserInfo";
+        if (!pFGlobal.db->checkTableExist(tableName))
+        {
+            std::string createTableQuery =
+                "CREATE TABLE " + tableName + " ("
+                "user_id INT PRIMARY KEY AUTO_INCREMENT, "
+                "email VARCHAR(255) UNIQUE NOT NULL, "
+                "mobile_no VARCHAR(255) NOT NULL, "
+                "password_1 VARCHAR(255) NOT NULL, "
+                "password_2 VARCHAR(255) NOT NULL, "
+                "password_3 VARCHAR(255) NOT NULL, "
+                "password_4 VARCHAR(255) NOT NULL, "
+                "reset_key VARCHAR(255)"
+                ")";
+            pFGlobal.db->createTable(createTableQuery);
+        }
+
         isPasswordValid = FALSE; 
     }
 
@@ -93,10 +110,10 @@ namespace winrt::Forex::implementation
         Dlg7().Visibility(Visibility::Visible);
         system("E:/PERSONAL/Freelance/Forex/live-binance-charts/src/finplot/dist/main.exe");
     }
-    void MainWindow::OnBtnResetKeyOne(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    void MainWindow::OnBtnNewSignUp(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         Dlg1().Visibility(Visibility::Collapsed);
-        Dlg3().Visibility(Visibility::Visible);
+        Dlg4().Visibility(Visibility::Visible);
     }
     void MainWindow::OnBtnResetKeyTwo(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
@@ -157,13 +174,16 @@ namespace winrt::Forex::implementation
             return;
         }
 
+        pFGlobal.otphandler.init(gmail);
+        pFGlobal.otphandler.sendEmailWithOTP();
+
         Dlg4().Visibility(Visibility::Collapsed);
         Dlg5().Visibility(Visibility::Visible);
     }
 
     BOOL MainWindow::isValidMobileNumber(std::string mobileNumber)
     {
-        std::regex regex("^[0-9]{13}$");
+        std::regex regex("^\\+[0-9]{13}$");
         if (std::regex_match(mobileNumber, regex))
         {
             // Valid mobile number
@@ -204,3 +224,9 @@ namespace winrt::Forex::implementation
 
 
 
+
+
+void winrt::Forex::implementation::MainWindow::OnBtnResetKeyOne(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+
+}

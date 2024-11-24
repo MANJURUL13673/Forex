@@ -9,6 +9,7 @@
 class CDatabase
 {
 private:
+	std::string dbName;
 	sql::Driver* driver;
 	sql::Connection* conn;
 	sql::Statement* stml;
@@ -16,5 +17,7 @@ private:
 public:
 	CDatabase(const std::string& server, const std::string& user, const std::string& password);
 	BOOL createDB(const std::string& dbName);
+	BOOL checkTableExist(const std::string& tableName);
+	BOOL createTable(const std::string& createTableQuery);
 };
 
