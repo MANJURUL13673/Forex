@@ -258,10 +258,14 @@
                     <Grid>
                         <TextBlock Text="Mail Account" Margin="18 20 0 0" FontSize="18" VerticalAlignment="Top"/>
                         <TextBox x:Name ="GmailBox" Width="220" Height="35" FontSize ="16" BorderBrush ="Black" VerticalAlignment="Top" Margin="130 18 0 0"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Reset Key" Margin="18 20 0 0" FontSize="18" VerticalAlignment="Top"/>
+                        <TextBox x:Name="ResetKeyBox2" Width="220" Height="35" FontSize ="16" BorderBrush ="Black" VerticalAlignment ="Top" Margin="130 18 0 0"/>
                         <TextBlock x:Name="WrongMGWarning" Text="" Margin="270 60 0 0" FontSize="12" Foreground="Red" VerticalAlignment="Top"/>
                     </Grid>
 
-                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 130 0 0">
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 80 0 0">
                         <!--<TextBlock x:Name="WrongOTPWarning" Text="" Margin="270 5 0 0" FontSize="12" Foreground="Red"/>-->
                         <!--Validate &amp; Connect -->
                         <Button Content="Validate &amp; Setup" Width="125" Height="70" Foreground="Black" BorderBrush="LimeGreen" BorderThickness="3" CornerRadius="62" FontSize="10" Background="White" Margin="140 5 0 0" Click="OnBtnValidateAndSetup1"/>
@@ -271,7 +275,7 @@
                 </StackPanel>
             </Grid>
         </StackPanel>
-
+        
         <!-- Section 5/Password Reset -->
         <StackPanel x:Name="Dlg5" Visibility="Collapsed">
             <Grid>
@@ -330,10 +334,10 @@
                         <TextBlock x:Name="WrongPW1Warning" Text="" Margin="270 5 0 0" FontSize="12" Foreground="Red"/>
 
                         <!--Validate &amp; Connect -->
-                        <Button Content="Password Setup" Width="125" Height="70" Foreground="Black" BorderBrush="LimeGreen" BorderThickness="3" CornerRadius="62" FontSize="10" Background="White" Margin="140 5 0 0" />
-                        <TextBlock Text="←" Foreground="LimeGreen" FontSize="50" Margin="180 0 0 33"/>
-                        <TextBlock Text="→" Foreground="LimeGreen" FontSize="50" Margin="180 28 0 0"/>
-                        <Button BorderBrush="Transparent" Background="Transparent" Margin="260 40 0 0" Click="OnBtnResetKeyOne">
+                        <Button Content="Password Setup" Width="125" Height="70" Foreground="Black" BorderBrush="LimeGreen" BorderThickness="3" CornerRadius="62" FontSize="10" Background="White" Margin="140 60 0 0" Click="OnBtnClickedPasswordSetup"/>
+                        <TextBlock Text="←" Foreground="LimeGreen" FontSize="50" Margin="180 50 0 33"/>
+                        <TextBlock Text="→" Foreground="LimeGreen" FontSize="50" Margin="180 80 0 0"/>
+                        <Button BorderBrush="Transparent" Background="Transparent" Margin="260 100 0 0" Click="OnBtnResetKeyOne">
                             <StackPanel>
                                 <TextBlock Text="Admin Access Reset" FontSize="10" FontWeight="Bold"/>
                                 <Line Stroke="Black" X1="0" X2="95" Y1="0" Y2="0" StrokeThickness="2"/>
@@ -344,8 +348,86 @@
             </Grid>
         </StackPanel>
 
+        <!--Section 6/OTP Validation -->
+        <StackPanel x:Name="Dlg6" Visibility="Collapsed">
+            <Grid>
+                <Rectangle Width="340" Height="50" Margin="0 20 0 0" VerticalAlignment="Top" RadiusX="25" RadiusY="25">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush>
+                            <GradientStop Color="LimeGreen" Offset="0.25"/>
+                            <GradientStop Color="Red" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle Width="330" Height="48" Margin ="0 21 0 0" Fill="White" VerticalAlignment="Top" RadiusX="30" RadiusY="30">
+                </Rectangle>
+                <RichTextBlock Foreground="Black" HorizontalAlignment="Center" Margin="0 22 0 0" FontWeight="SemiBold">
+                    <Paragraph>
+                        <Run>F-C-AMP V1.00</Run>
+                        <InlineUIContainer>
+                            <Image Source="C:/Users/HP/OneDrive/Pictures/logo.jpg" Width="40" Height="20" VerticalAlignment="Bottom" Margin="-7 0 0 -5"/>
+                        </InlineUIContainer>
+                    </Paragraph>
+                </RichTextBlock>
+                <TextBlock Text="Forex - Crypto Asset Management Platform" HorizontalAlignment="Center" Margin="50" FontSize="10"/>
+            </Grid>
+            <Grid>
+                <TextBlock Text="Asset Administrator SETUP" Margin="15 -25 0 0" FontSize="20" Foreground="Black"/>
+                <Path Stroke="Black" StrokeThickness="2" Margin="0 13 0 0" >
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathGeometry.Figures>
+                                <PathFigure StartPoint="13, 0">
+                                    <LineSegment Point="370,0"/>
+                                </PathFigure>
+                            </PathGeometry.Figures>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+                <StackPanel>
+                    <Grid>
+                        <TextBlock Text="OTP" Margin="18 30 0 0" FontSize="18"/>
+                        <TextBox x:Name="OTP2KEY1" Width="25" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="-65 28 0 0"/>
+                        <TextBox x:Name ="OTP2KEY2" Width="25" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="-10 28 0 0"/>
+                        <TextBox x:Name="OTP2KEY3" Width="25" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="45 28 0 0"/>
+                        <TextBox x:Name="OTP2KEY4" Width="25" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="100 28 0 0"/>
+                        <TextBox x:Name="OTP2KEY5" Width="25" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="155 28 0 0"/>
+                        <TextBox x:Name="OTP2KEY6" Width="25" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="210 28 0 0"/>
+                        <TextBox x:Name="OTP2KEY7" Width="25" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="265 28 0 0"/>
+                        <TextBox x:Name="OTP2KEY8" Width="25" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="320 28 0 0"/>
+                    </Grid>
+                    <!--
+                    <Grid>
+                        <TextBlock Text="Google Authy" Margin="18 20 0 0" FontSize="18"/>
+                        <TextBox Width="30" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="-62 18 0 0"/>
+                        <TextBox Width="30" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="13 18 0 0"/>
+                        <TextBox Width="30" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="88 18 0 0"/>
+                        <TextBox Width="30" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="163 18 0 0"/>
+                        <TextBox Width="30" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="238 18 0 0"/>
+                        <TextBox Width="30" Height="18" MinWidth="5" BorderBrush ="Black" MaxLength="1" Margin="313 18 0 0"/>
+                    </Grid>
+                    -->
 
-        <!-- Section 6 -->
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 195 0 0">
+                        <TextBlock x:Name="WrongOTPWarning2" Text="" Margin="270 5 0 0" FontSize="12" Foreground="Red"/>
+                        <!--Validate &amp; Connect -->
+                        <Button Content="Validate &amp; Setup" Width="125" Height="70" Foreground="Black" BorderBrush="LimeGreen" BorderThickness="3" CornerRadius="62" FontSize="10" Background="White" Margin="140 5 0 0" Click="OnBtnOTPValidationAndSetup"/>
+                        <TextBlock Text="←" Foreground="LimeGreen" FontSize="50" Margin="180 0 0 33"/>
+                        <TextBlock Text="→" Foreground="LimeGreen" FontSize="50" Margin="180 28 0 0"/>
+                        <!--
+                        <Button BorderBrush="Transparent" Background="Transparent" Margin="260 40 0 0" Click="OnBtnResetKeyTwo">
+                            <StackPanel>
+                                <TextBlock Text="Admin Access Reset" FontSize="10" FontWeight="Bold"/>
+                                <Line Stroke="Black" X1="0" X2="95" Y1="0" Y2="0" StrokeThickness="2"/>
+                            </StackPanel>
+                        </Button>
+                        -->
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <!-- Section 7 -->
         <StackPanel Visibility="Collapsed">
             <Grid>
                 <Rectangle Width="340" Height="50" Margin="0 20 0 0" VerticalAlignment="Top" RadiusX="25" RadiusY="25">
@@ -427,7 +509,7 @@
             </Grid>
         </StackPanel>
         
-        <!-- Section 7 -->
+        <!-- Section 8 -->
         <StackPanel x:Name="Dlg7" Visibility="Collapsed">
             <StackPanel Background="White" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1.45" Padding="5 10 5 10" CornerRadius="5">

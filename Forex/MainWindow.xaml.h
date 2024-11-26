@@ -13,9 +13,9 @@ namespace winrt::Forex::implementation
     {
     private:
         BOOL isPasswordValid;
-  
         BOOL isValidMobileNumber(std::string mobileNumber);
-        BOOL isValidGmail(std::string gmailAddress);
+        BOOL isValidMail(std::string gmailAddress);
+
 
     public:
         MainWindow();
@@ -30,6 +30,8 @@ namespace winrt::Forex::implementation
         void OnBtnValidateAndReset(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
         void OnBtnValidateAndSetup1(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
         void OnBtnResetKeyOne(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+        void OnBtnClickedPasswordSetup(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+        void OnBtnOTPValidationAndSetup(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
     };
 }
 

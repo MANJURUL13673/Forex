@@ -7,4 +7,5 @@ CForexGlobal::CForexGlobal()
 {
 	lgr = nullptr;
 	db = nullptr;
+	usr = nullptr;
 }

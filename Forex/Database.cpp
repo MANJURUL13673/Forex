@@ -92,9 +92,44 @@ BOOL CDatabase::createTable(const std::string& createTableQuery)
     {
         stml->execute(createTableQuery);
         pFGlobal.lgr->log(LogLevel::INFO, createTableQuery + " Query Successful");
+        return TRUE;
     }
     catch (sql::SQLException e)
     {
         pFGlobal.lgr->log(LogLevel::EXCEPTION, "Create Table Failed!");
     }
+    return FALSE;
+}
+
+BOOL CDatabase::sendCmd(const std::string& cmd)
+{
+    try
+    {
+        stml->execute(cmd);
+        pFGlobal.lgr->log(LogLevel::INFO, cmd + " Successful");
+        return TRUE;
+    }
+    catch (sql::SQLException e)
+    {
+        pFGlobal.lgr->log(LogLevel::EXCEPTION, cmd + " process failed!");
+    }
+    return FALSE;
+}
+
+BOOL CDatabase::sendTableQuery(const std::string& cmd)
+{
+    try {
+        res = stml->executeQuery(cmd);
+        return TRUE;
+    }
+    catch (sql::SQLException e)
+    {
+        pFGlobal.lgr->log(LogLevel::EXCEPTION, cmd + " Failed!");
+    }
+    return FALSE;
+}
+
+sql::ResultSet* CDatabase::GetCurrentResult()
+{
+    return res;
 }

@@ -21,5 +21,5 @@ private:
 public:
 	COTPHandle();
 	void init(const std::string& userMail);
-	void sendEmailWithOTP();
+	std::string sendEmailWithOTP();
 };

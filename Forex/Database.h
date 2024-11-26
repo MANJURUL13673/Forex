@@ -13,11 +13,15 @@ private:
 	sql::Driver* driver;
 	sql::Connection* conn;
 	sql::Statement* stml;
+	sql::ResultSet* res;
 
 public:
 	CDatabase(const std::string& server, const std::string& user, const std::string& password);
 	BOOL createDB(const std::string& dbName);
 	BOOL checkTableExist(const std::string& tableName);
 	BOOL createTable(const std::string& createTableQuery);
+	BOOL sendCmd(const std::string& cmd);
+	BOOL sendTableQuery(const std::string& cmd);
+	sql::ResultSet* GetCurrentResult();
 };
 

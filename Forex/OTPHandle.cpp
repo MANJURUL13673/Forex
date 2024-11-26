@@ -14,7 +14,7 @@ COTPHandle::COTPHandle()
 void COTPHandle::init(const std::string& userMail)
 {
     to = userMail;
-    otp = generateOTP(6);
+    otp = generateOTP(8);
 }
 
 std::string COTPHandle::generateOTP(int length = 6) {
@@ -91,7 +91,7 @@ void COTPHandle::sendMail(std::string emailBody)
     }
 }
 
-void COTPHandle::sendEmailWithOTP()
+std::string COTPHandle::sendEmailWithOTP()
 {
     std::string email_body = "";
     email_body += "To: " + to + "\r\n";
@@ -106,4 +106,5 @@ void COTPHandle::sendEmailWithOTP()
     email_body += "Forex Team";
 
     sendMail(email_body);
+    return otp;
 }
