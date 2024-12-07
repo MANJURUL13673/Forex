@@ -73,6 +73,7 @@ namespace winrt::Forex::implementation
         }
 
         isPasswordValid = FALSE; 
+        isLogIn = FALSE;
     }
 
     int32_t MainWindow::MyProperty()
@@ -156,17 +157,19 @@ namespace winrt::Forex::implementation
         }
 
         std::string dEmail;
+        std::string dMobileNo;
         std::string dPassword[4];
-        std::string resetKey;
+        std::string dResetKey;
         sql::ResultSet* res = pFGlobal.db->GetCurrentResult();
         if (res->next())
         {
             dEmail = res->getString("email");
+            dMobileNo = res->getString("mobile_no");
             dPassword[0] = res->getString("password_1");
             dPassword[1] = res->getString("password_2");
             dPassword[2] = res->getString("password_3");
             dPassword[3] = res->getString("password_4");
-            resetKey = res->getString("reset_key");
+            dResetKey = res->getString("reset_key");
         }
 
         for (int i = 0; i < 4; i++)
@@ -178,8 +181,16 @@ namespace winrt::Forex::implementation
             }
         }
 
+        pFGlobal.resetUsr(dEmail, dMobileNo, dResetKey);
+        
+        pFGlobal.otphandler.init(pFGlobal.usr->email);
+        pFGlobal.usr->otp = pFGlobal.otphandler.sendEmailWithOTP();
+
         Dlg1().Visibility(Visibility::Collapsed);
-        Dlg2().Visibility(Visibility::Visible);
+        Dlg6().Visibility(Visibility::Visible);
+
+        isLogIn = TRUE;
+        OTPButton().Content(box_value(L"Validate & Login"));
     }
 
     void MainWindow::OnBtnOTPValidation(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
@@ -264,19 +275,7 @@ namespace winrt::Forex::implementation
         }
         resetKey = winrt::to_string(temp);
 
-        if (pFGlobal.usr == nullptr)
-        {
-            pFGlobal.usr = std::make_unique<SUserProperty>();
-        }
-        else
-        {
-            pFGlobal.usr.reset(new SUserProperty());
-        }
-        pFGlobal.usr->mobileNo = mobileNumber;
-        pFGlobal.usr->email = mail;
-        pFGlobal.usr->resetKey = resetKey;
-        //pFGlobal.otphandler.init(mail);
-        //pFGlobal.otphandler.sendEmailWithOTP();
+        pFGlobal.resetUsr(mail, mobileNumber, resetKey);
 
         Dlg4().Visibility(Visibility::Collapsed);
         Dlg5().Visibility(Visibility::Visible);
@@ -322,6 +321,7 @@ namespace winrt::Forex::implementation
         Dlg6().Visibility(Visibility::Visible);
     }
 
+    // OTP Validation for SignUp and Login
     void MainWindow::OnBtnOTPValidationAndSetup(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         std::string OTP = "";
@@ -387,19 +387,28 @@ namespace winrt::Forex::implementation
             return;
         }
 
-        std::string cmd =
-            "INSERT INTO UserInfo "
-            "(email, mobile_no, password_1, password_2, password_3, password_4, reset_key) "
-            "VALUES ('" + pFGlobal.usr->email + "', '" + pFGlobal.usr->mobileNo + "', '" + pFGlobal.usr->passwords[0] + "', '" + pFGlobal.usr->passwords[1] + "', '" + pFGlobal.usr->passwords[2] + "', '" + pFGlobal.usr->passwords[3] + "', '" + pFGlobal.usr->resetKey + "')";
-        
-        BOOL insertStatus = pFGlobal.db->sendCmd(cmd);
-        if (!insertStatus)
+        if (!isLogIn)
         {
-            return;
-        }
+            std::string cmd =
+                "INSERT INTO UserInfo "
+                "(email, mobile_no, password_1, password_2, password_3, password_4, reset_key) "
+                "VALUES ('" + pFGlobal.usr->email + "', '" + pFGlobal.usr->mobileNo + "', '" + pFGlobal.usr->passwords[0] + "', '" + pFGlobal.usr->passwords[1] + "', '" + pFGlobal.usr->passwords[2] + "', '" + pFGlobal.usr->passwords[3] + "', '" + pFGlobal.usr->resetKey + "')";
 
-        Dlg6().Visibility(Visibility::Collapsed);
-        Dlg1().Visibility(Visibility::Visible);
+            BOOL insertStatus = pFGlobal.db->sendCmd(cmd);
+            if (!insertStatus)
+            {
+                return;
+            }
+
+            Dlg6().Visibility(Visibility::Collapsed);
+            Dlg1().Visibility(Visibility::Visible);
+        }
+        else
+        {
+            Dlg6().Visibility(Visibility::Collapsed);
+            Dlg7().Visibility(Visibility::Visible);
+            system("E:/PERSONAL/Freelance/Forex/live-binance-charts/src/finplot/dist/main.exe");
+        }
     }
 
     BOOL MainWindow::isValidMobileNumber(std::string mobileNumber)

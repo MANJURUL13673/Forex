@@ -20,6 +20,7 @@ public:
 	std::unique_ptr<CLogger>lgr;
 	std::unique_ptr<CDatabase>db;
     std::unique_ptr<SUserProperty>usr;
+    void resetUsr(std::string email, std::string mobileNo, std::string resetKey);
 	COTPHandle otphandler;
 };
 

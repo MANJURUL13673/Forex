@@ -12,6 +12,7 @@ namespace winrt::Forex::implementation
     struct MainWindow : MainWindowT<MainWindow>
     {
     private:
+        BOOL isLogIn;
         BOOL isPasswordValid;
         BOOL isValidMobileNumber(std::string mobileNumber);
         BOOL isValidMail(std::string gmailAddress);

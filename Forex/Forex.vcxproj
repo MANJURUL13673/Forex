@@ -143,6 +143,7 @@
     <Manifest Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="000Revision.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="ForexGlobal.h" />
     <ClInclude Include="Logger.h" />
